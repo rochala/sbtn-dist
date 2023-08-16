@@ -1,7 +1,21 @@
 name: Native Image
-on: workflow_dispatch
+on: [workflow_dispatch, repository_dispatch]
 jobs:
+  pong-sbt:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Event Information
+      run: |
+        echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+    - name: PONG - Dispatch response to received PING from sbt/sbt
+      if: github.event.action == 'ping'
+      run: |
+        curl -X POST https://api.github.com/repos/rochala/sbt/dispatches \
+        -H 'Accept: application/vnd.github.everest-preview+json' \
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        --data '{"event_type": "pong", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
   native-image:
+    if: github.event.action == 'ack' || github.event_name == 'workflow_dispatch'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -26,6 +40,8 @@ jobs:
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M
     steps:
+      - name: New version information
+        run: echo "${{ github.event.client_payload.version }}"
       - name: Checkout sbt/sbt
         uses: actions/checkout@v3
         with:
