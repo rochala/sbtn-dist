@@ -164,10 +164,27 @@ jobs:
       env:
         PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
         KEYGRIP: ${{ secrets.KEYGRIP }}
+        KEYNAME: ${{ secrets.KEYNAME }}
         PGP_SECRET: ${{ secrets.PGP_SECRET }}
         GPG_EMAIL: ${{ secrets.GPG_EMAIL }}
-    # - name: Test debian artifactory
-    # - name: Test rpm artifactory
-    # - name: Autocommit changes
+    - name: Test debian artifactory
+      run: .github/scripts/testDebianArtifactory.sh
+    - name: Test rpm artifactory
+      run: .github/scripts/testRpmArtifactory.sh
+    - name: Generate token for autocommit
+      uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ steps.generate-token.outputs.token }}
+    - name: Check outputs
+      if: ${{ steps.cpr.outputs.pull-request-number }}
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
 
