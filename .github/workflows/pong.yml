@@ -1,12 +1,14 @@
 name: ACK new release of sbt/sbt
-on: repository_dispatch
+on: 
+  repository_dispatch:
+    types: [NewSbtVersionReleased]
 jobs:
   pong-sbt:
     runs-on: ubuntu-latest
     steps:
     - name: Event Information
       run: |
-        echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+        echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.version }}'"
     - name: Generate token
       uses: tibdex/github-app-token@v1
       id: generate-token
@@ -22,4 +24,4 @@ jobs:
           -H "Authorization: Bearer ${{ steps.generate-token.outputs.token }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/rochala/sbt/dispatches \
-          -d '{"event_type":"ACKNewSbtVersion","client_payload":{"repository": "rochala/sbtn-dist" }}'
+          -d '{"event_type":"ACKNewSbtVersion","client_payload":{"version": "${{ github.event.client_payload.version }}"}}'

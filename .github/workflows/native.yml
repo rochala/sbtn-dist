@@ -1,5 +1,8 @@
 name: Native Image
-on: [workflow_dispatch, repository_dispatch]
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [AutomaticRelease]
 jobs:
   native-image:
     if: github.event.action == 'AutomaticRelease' || github.event_name == 'workflow_dispatch'
