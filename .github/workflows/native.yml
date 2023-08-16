@@ -167,9 +167,9 @@ jobs:
         KEYNAME: ${{ secrets.KEYNAME }}
         PGP_SECRET: ${{ secrets.PGP_SECRET }}
         GPG_EMAIL: ${{ secrets.GPG_EMAIL }}
-    - name: Test debian artifactory
+    - name: Test debian artifactory structure
       run: .github/scripts/testDebianArtifactory.sh
-    - name: Test rpm artifactory
+    - name: Test rpm artifactory structure
       run: .github/scripts/testRpmArtifactory.sh
     - name: Generate token for autocommit
       uses: tibdex/github-app-token@v1
