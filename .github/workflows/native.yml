@@ -185,11 +185,12 @@ jobs:
         app_id: ${{ secrets.APP_ID }}
         private_key: ${{ secrets.APP_PRIVATE_KEY }}
     - name: Create Pull Request
+      id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ steps.generate-token.outputs.token }}
     - name: Merge pull request
-      run: gh pr merge --merge "${{ steps.cpr.outputs.pull-request-number }}"
+      run: gh pr merge --merge ${{ steps.cpr.outputs.pull-request-number }}
       env:
         GH_TOKEN: ${{ steps.generate-token.outputs.token }}
   release:
@@ -208,11 +209,6 @@ jobs:
           path: native-packages
       - name: Display structure of downloaded files
         run: ls -R
-      - name: Check outputs
-        if: ${{ steps.cpr.outputs.pull-request-number }}
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
       - name: Rename packages
         run: |
           mkdir to-upload
