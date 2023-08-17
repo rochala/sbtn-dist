@@ -9,11 +9,11 @@ Installed-Size: 49
 Depends: bash (>= 3.2), curl | wget
 Recommends: git
 Filename: pool/main/sbt_1.9.3_all.deb
-Size: 20036
-MD5sum: b60cf9c9b919c00cea20af4fa1492ee8
-SHA1: 95e4070bc9e85081e5ea1cf9cf4003198b7a9f56
-SHA256: 8659f52d63f8e222e6f5d144d00979e2a6c0d595848fb39a53ade12bb75037b3
-SHA512: 29dfb4dc82fed2b3e5d411b0b8f31989ad4e43db43e45efe452713d6052da41b7b5db8dde89d6fbbfea5ac32d42297cf2d65de2e2b7e30f15c959dbb626922c7
+Size: 20030
+MD5sum: 55a1db3ccb596be02bb58f6cde9808c3
+SHA1: bea902753f59a53d884bd0c749e0ca579be59fa5
+SHA256: be1094004c176a956d76ed4046ed37f7ebd2caf2761b948a6ddd019cfa586c7f
+SHA512: a767246b53f236ec448119de20e5f50f41a843cf907231f4233219cd890422634957f688a1b49d510ca4cc27982d46205da8a0084734d1279b0fbe218b155ce6
 Description: sbt, the interactive build tool
  This script provides a native way to run sbt,
   a build tool for Scala and more.

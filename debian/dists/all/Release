@@ -2,36 +2,36 @@ Acquire-By-Hash: yes
 Architectures: all
 Codename: all
 Components: main
-Date: Thu, 17 Aug 2023 14:14:25 +0000
+Date: Thu, 17 Aug 2023 14:42:10 +0000
 Description: native script to run sbt, a build tool for Scala and more
 Label: Scala-sbt
 Origin: Scala-sbt
 Suite: all
 MD5Sum:
- 84144335a0d4c9e36020f2154b3bc687              226 Release
+ 62cb3fddcc6969d99f0fc2bcd3828d04              226 Release
  50f07592c9ca56065fbe200198d3e65e              399 main/Contents-all
  813b669676f83f8ea82a006d80802f12              164 main/Contents-all.gz
- 7ab9d06c5631e2d8a9e86e4a9a7967fa              685 main/binary-all/Packages
- 0c4fb4888967c7fa43b47438fc0f6d93              558 main/binary-all/Packages.bz2
- 57ee9c2ebec99efd308848682fc0f2d3              517 main/binary-all/Packages.gz
+ 2db391c63232499228243aa366f3383a              685 main/binary-all/Packages
+ 98089889030e78ea99ab9c929dc7ccbe              548 main/binary-all/Packages.bz2
+ 5f106e3362c2fae154ff2bad94e16f91              520 main/binary-all/Packages.gz
 SHA1:
- 6de6f394d1583c30e312a34b697cc01b0f755f9f              226 Release
+ a5817c56ba6c040f2f813c0a45cd1ed328b02c47              226 Release
  26ccad4d4370b4b2d22db69424bfcf5f6db734cc              399 main/Contents-all
  d353d011f853a5a2e679e980047f0f9bb4910dd3              164 main/Contents-all.gz
- a7ab62870a161b323fadfbf6f7d81a87d39b6c0e              685 main/binary-all/Packages
- 5650c3e2d6a1262a5affda5bca9be56fb93e779a              558 main/binary-all/Packages.bz2
- 7bdd5be2e62e5842d5c25e2509edd3798db0e8c8              517 main/binary-all/Packages.gz
+ 0810379a2240bdd78a959cea4ee030ec0e87c516              685 main/binary-all/Packages
+ 0f8ef45731d8e6dc8436c4e08996ca4e8d1e8e1b              548 main/binary-all/Packages.bz2
+ a103bf22bc8bc42435a616ee68f3337f5d452591              520 main/binary-all/Packages.gz
 SHA256:
- ce26ff6404495290dd78bd1a0be81f5378c4195df120ec17a2de1ec247ef146b              226 Release
+ 70ad25bcdf0c70c33a0b8a7a33c1da7ac230a65ed0612ce0a36621166bde6fec              226 Release
  517b4d01dc83d2779cb20885bf407f6fc3743f274f0ae1465398741841ac5c8e              399 main/Contents-all
  93f908fd3201ff172cafbe355a1436a77f7b43c123786264811121f53e9b3762              164 main/Contents-all.gz
- 8d75062a5245277f8836622787f7642c8c68827b6fdbd67a919dd25a3a8426d7              685 main/binary-all/Packages
- ad85df93550f441e8fa8c63dc075e8720b2485d338c7f84f653a7dac305baa30              558 main/binary-all/Packages.bz2
- 4e7027348fff3789cb4ea3d15c58ed0d9bfc5afe0a9d06fd71180c8e9c63874b              517 main/binary-all/Packages.gz
+ 134b1d77ce655984fb35ada74eb557279177a6e51275647c6399287c5c19eb84              685 main/binary-all/Packages
+ df735d010de7123ee06ca9453c89d1900df754b691f1023c034aabb02b0c75e1              548 main/binary-all/Packages.bz2
+ a763f066b0e63e19899ed4cf5e07ab622be139c76239eb3e24d47fa943e0daea              520 main/binary-all/Packages.gz
 SHA512:
- 29469c727a39ef2fc815e3e37730505da8a43e4a1ea168465e1fc66d2b49d64ebe74fb577fb054e7194030f5f6d785af494652a3b6f477e02a57d740bf9f4b6e              226 Release
+ 0751b21d2d4c57d56c5c2b621d1f63434c757cdcb540cb08262efed1b00231a7bab6df31e56ea1881e5a1cd3734e89b1f286a1d9a751ba256804bccd340c34d0              226 Release
  87996d8b3c0c5890907b250340a299533fdeb6e6a2b16d4f735641bffb84d2b4b8ae29fb10583eda77db99cef6b2ef7f5c8ec113d8350762ddc3026e730f7732              399 main/Contents-all
  430599f576f76817b38d71a385208516c9b14a93b71ba647e632d394757a8beaac72dd51e2fe517aa410692f7f9e5a8eed074d82f7dc5fb9f697ef34be8381d8              164 main/Contents-all.gz
- dc45fc0a87525eb866bf46f6c81ae60eeee579f94c82d57d7fedb5c41200917ec23dd0c6c91ee6eeeddab4d7838a57c3d15c99b4b8f330385b19028e080f6626              685 main/binary-all/Packages
- abb64234af22bda752f218138e44827af5198ab7fd5ed0c5cac0a7ef09310fd004143b3ed1ac7af67f8c1de5e624468ad1d2dcea3f7448031b44a56dc31f0f98              558 main/binary-all/Packages.bz2
- 12b7ef412ba07cc78cf6693e5e85edb93936958cb698d0ccc73112f4c8e427fdff6669fc5261f0325e9a64a52dbd8697519369625681f8c37404e52378d50e2c              517 main/binary-all/Packages.gz
+ baf0f7f032d1bfe0be1b6ea2d63a6ea88ee9d36af5939a262b8f505e2ca19e875b3f9c1434d82a03b556648c085c27ab5ee7049c77600364b20d2603fdba3bb6              685 main/binary-all/Packages
+ a1a4c5b385b6ffd0a6e65bb2d3d07a1088110e9381de167451bb546e3b6e5de144d096eaf4cbc241a4bccabf2b5813b5bc84d488ac0d92fb07120e26ec48de50              548 main/binary-all/Packages.bz2
+ 4624fe2e1669877afef81926a6fc0b56f6a3e723554fd295291a1b60c6f6804c685bac5ccd5cf4c7ff99dbb3a67bbd6102a7658b43263d05188f21997c028b3d              520 main/binary-all/Packages.gz
