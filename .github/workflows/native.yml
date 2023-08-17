@@ -212,11 +212,18 @@ jobs:
       - name: Rename packages
         run: |
           mkdir to-upload
-          mv native-packages/sbtn-aarch64-pc-linux/sbtn to-upload/sbtn-aarch64-pc-linux || true
           mv native-packages/sbtn-x86_64-pc-linux/sbtn to-upload/sbtn-x86_64-pc-linux || true
-          mv native-packages/sbtn-x86_64-apple-darwin/sbtn to-upload/sbtn-x86_64-apple-darwin || true
-          mv native-packages/sbtn-x86_64-pc-win32.exe/sbtn.exe to-upload/sbtn-x86_64-pc-win32.exe || true
           ls -R
+      - name: Set REF value
+        run: |
+          if [ '${{ github.event.action }}' == 'AutomaticRelease' ]; then
+              REF=${{ github.event.client_payload.ref }}
+              echo "REF=${REF}" >> $GITHUB_ENV
+          else
+              REF=${{ github.event.inputs.ref }}
+              echo "REF=${REF}" >> $GITHUB_ENV
+          fi
+          echo "TAG=${REF##*/}" >> $GITHUB_ENV
       - name: Create release
         id: create-release
         uses: softprops/action-gh-release@v1
@@ -225,7 +232,4 @@ jobs:
           name: ${{ env.TAG }}
           tag_name: ${{ env.REF }}
           files: |
-            to-upload/sbtn-aarch64-pc-linux
             to-upload/sbtn-x86_64-pc-linuxpc-linux
-            to-upload/sbtn-x86_64-apple-darwin
-            to-upload/sbtn-x86_64-pc-win32.exe
