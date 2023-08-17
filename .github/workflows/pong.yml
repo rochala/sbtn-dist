@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Event Information
       run: |
-        echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.version }}'"
+        echo "Event '${{ github.event.action }}' received for ref '${{ github.event.client_payload.ref }}'"
     - name: Generate token
       uses: tibdex/github-app-token@v1
       id: generate-token
@@ -24,4 +24,4 @@ jobs:
           -H "Authorization: Bearer ${{ steps.generate-token.outputs.token }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/rochala/sbt/dispatches \
-          -d '{"event_type":"ACKNewSbtVersion","client_payload":{"version": "${{ github.event.client_payload.version }}"}}'
+          -d '{"event_type":"ACKNewSbtVersion","client_payload":{"ref": "${{ github.event.client_payload.ref }}"}}'
