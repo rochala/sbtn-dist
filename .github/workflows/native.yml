@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: 'sbt tag to release'
+        description: 'sbt ref to release in format `refs/tags/x.x.x` '
         required: true
         type: string
   repository_dispatch:
