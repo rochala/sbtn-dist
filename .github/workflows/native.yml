@@ -149,8 +149,6 @@ jobs:
       with:
         name: linux-packages
         path: artifacts
-    - name: Move artifacts
-      run: |
     - name: GPG setup
       run: .github/scripts/gpg-setup.sh
       env:
