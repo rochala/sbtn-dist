@@ -232,4 +232,4 @@ jobs:
           name: ${{ env.TAG }}
           tag_name: ${{ env.REF }}
           files: |
-            to-upload/sbtn-x86_64-pc-linuxpc-linux
+            to-upload/sbtn-x86_64-pc-linux
