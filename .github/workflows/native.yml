@@ -178,6 +178,20 @@ jobs:
       run: .github/scripts/testDebianArtifactory.sh
     - name: Test rpm artifactory structure
       run: .github/scripts/testRpmArtifactory.sh
+    - name: Generate token for pull request
+      uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ steps.generate-token.outputs.token }}
+    - name: Merge pull request
+      run: gh pr merge --merge "${{ steps.cpr.outputs.pull-request-number }}"
+      env:
+        GH_TOKEN: ${{ steps.generate-token.outputs.token }}
   release:
     needs: repository-update
     runs-on: ubuntu-latest
@@ -194,19 +208,19 @@ jobs:
           path: native-packages
       - name: Display structure of downloaded files
         run: ls -R
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
       - name: Check outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-      - name: Merge pull request
-        run: gh pr merge --merge "${{ steps.cpr.outputs.pull-request-number }}"
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+      - name: Rename packages
+        run: |
+          mkdir to-upload
+          mv native-packages/sbtn-aarch64-pc-linux/sbtn to-upload/sbtn-aarch64-pc-linux || true
+          mv native-packages/sbtn-x86_64-pc-linux/sbtn to-upload/sbtn-x86_64-pc-linux || true
+          mv native-packages/sbtn-x86_64-apple-darwin/sbtn to-upload/sbtn-x86_64-apple-darwin || true
+          mv native-packages/sbtn-x86_64-pc-win32.exe/sbtn.exe to-upload/sbtn-x86_64-pc-win32.exe || true
+          ls -R
       - name: Create release
         id: create-release
         uses: softprops/action-gh-release@v1
@@ -214,4 +228,8 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
           name: ${{ env.TAG }}
           tag_name: ${{ env.REF }}
-          files: native-packages
+          files: |
+            to-upload/sbtn-aarch64-pc-linux
+            to-upload/sbtn-x86_64-pc-linuxpc-linux
+            to-upload/sbtn-x86_64-apple-darwin
+            to-upload/sbtn-x86_64-pc-win32.exe
