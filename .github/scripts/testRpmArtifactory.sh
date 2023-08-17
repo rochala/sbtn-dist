@@ -11,7 +11,7 @@ enabled=1
 
 SCRIPT="echo \"$REPO_INPUT\" > /etc/yum.repos.d/scala-archive.repo &&
   yum update -y &&
-  yum install -y curl java-17-openjdk-devel sbt &&
+  yum install -y java-17-openjdk-devel sbt &&
   cd ~/ &&
   sbt new scala/scala3.g8 --name=sbt-test &&
   cd sbt-test &&
