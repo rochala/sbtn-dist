@@ -9,7 +9,7 @@ on:
   repository_dispatch:
     types: [AutomaticRelease]
 jobs:
-  native-image:
+  build-artifacts:
     if: github.event.action == 'AutomaticRelease' || github.event_name == 'workflow_dispatch'
     runs-on: ${{ matrix.os }}
     strategy:
@@ -136,37 +136,15 @@ jobs:
           path: launcher-package/target/linux-packages/
           if-no-files-found: error
           retention-days: 2
-      - name: Generate token for release
-        uses: tibdex/github-app-token@v1
-        id: generate-token
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-      - name: Create release
-        id: create-release
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          name: ${{ env.TAG }}
-          tag_name: ${{ env.REF }}
-      - name: Upload release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{ matrix.local_path }}
-          asset_name: ${{ matrix.uploaded_filename }}
-          asset_content_type: application/zip
   repository-update:
-    needs: native-image
+    needs: build-artifacts
     runs-on: ubuntu-latest
     steps:
     - name: Checkout rochala/sbtn-dist
       uses: actions/checkout@v3
       with:
         repository: rochala/sbtn-dist
-    - name: Fetch artifacts
+    - name: Fetch linux package artifacts
       uses: actions/download-artifact@v3
       with:
         name: linux-packages
@@ -202,20 +180,39 @@ jobs:
       run: .github/scripts/testDebianArtifactory.sh
     - name: Test rpm artifactory structure
       run: .github/scripts/testRpmArtifactory.sh
-    - name: Generate token for autocommit
-      uses: tibdex/github-app-token@v1
-      id: generate-token
-      with:
-        app_id: ${{ secrets.APP_ID }}
-        private_key: ${{ secrets.APP_PRIVATE_KEY }}
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ steps.generate-token.outputs.token }}
-    - name: Check outputs
-      if: ${{ steps.cpr.outputs.pull-request-number }}
-      run: |
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-
-
+  release:
+    needs: repository-update
+    steps:
+      - name: Generate token for release
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Fetch native packages
+        uses: actions/download-artifact@v3
+        with:
+          path: native-packages
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Merge pull request
+        run: gh pr merge --merge "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+      - name: Create release
+        id: create-release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          name: ${{ env.TAG }}
+          tag_name: ${{ env.REF }}
+          files: native-packages
