@@ -182,6 +182,7 @@ jobs:
       run: .github/scripts/testRpmArtifactory.sh
   release:
     needs: repository-update
+    runs-on: ubuntu-latest
     steps:
       - name: Generate token for release
         uses: tibdex/github-app-token@v1
