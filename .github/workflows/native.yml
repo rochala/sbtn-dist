@@ -60,14 +60,13 @@ jobs:
       - name: Set REF value
         run: |
           if [ '${{ github.event.action }}' == 'AutomaticRelease' ]; then
-              echo "REF=${{ github.event.client_payload.ref }}" >> $GITHUB_ENV
+              REF=${{ github.event.client_payload.ref }}
+              echo "REF=${REF}" >> $GITHUB_ENV
           else
-              echo "REF=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
+              REF=${{ github.event.inputs.ref }}
+              echo "REF=${REF}" >> $GITHUB_ENV
           fi
           echo "TAG=${REF##*/}" >> $GITHUB_ENV
-
-          echo "$REF"
-          echo "$TAG"
 
       - name: Build Linux packages
         if: ${{ matrix.uploaded_filename == 'sbtn-x86_64-pc-linux' }}
