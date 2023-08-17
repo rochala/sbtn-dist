@@ -136,18 +136,23 @@ jobs:
           path: launcher-package/target/linux-packages/
           if-no-files-found: error
           retention-days: 2
-
+      - name: Generate token for release
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Create release
         id: create-release
         uses: softprops/action-gh-release@v1
         with:
+          token: ${{ steps.generate-token.outputs.token }}
           name: ${{ env.TAG }}
           tag_name: ${{ env.REF }}
       - name: Upload release
-        if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1.0.2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ${{ matrix.local_path }}
