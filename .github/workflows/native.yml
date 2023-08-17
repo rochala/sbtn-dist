@@ -59,7 +59,7 @@ jobs:
           sbt clean nativeImage
       - name: Set REF value
         run: |
-          if [ '${{ github.event.action }}' != 'AutomaticRelease' ]; then
+          if [ '${{ github.event.action }}' == 'AutomaticRelease' ]; then
               echo "REF=${{ github.event.client_payload.ref }}" >> $GITHUB_ENV
           else
               echo "REF=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
