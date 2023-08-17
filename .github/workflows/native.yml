@@ -77,7 +77,7 @@ jobs:
           LINUX_BINARIES_FOLDER=target/linux-packages
 
           ## Create binaries
-          sbt -Dsbt.build.version=$TAG-Dsbt.build.offline=false -Dsbt.build.includesbtn=false -Dsbt.build.includesbtlaunch=false rpm:packageBin debian:packageBin
+          sbt -Dsbt.build.version=$TAG -Dsbt.build.offline=false -Dsbt.build.includesbtn=false -Dsbt.build.includesbtlaunch=false rpm:packageBin debian:packageBin
 
           ## Move binaries to linux-packages folder
           mkdir -p $LINUX_BINARIES_FOLDER
