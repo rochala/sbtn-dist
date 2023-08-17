@@ -65,6 +65,10 @@ jobs:
               echo "REF=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
           fi
           echo "TAG=${REF##*/}" >> $GITHUB_ENV
+
+          echo "$REF"
+          echo "$TAG"
+
       - name: Build Linux packages
         if: ${{ matrix.uploaded_filename == 'sbtn-x86_64-pc-linux' }}
         shell: bash
