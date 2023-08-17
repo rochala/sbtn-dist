@@ -1,6 +1,11 @@
 name: Native Image
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'sbt tag to release'
+        required: true
+        type: string
   repository_dispatch:
     types: [AutomaticRelease]
 jobs:
@@ -31,12 +36,12 @@ jobs:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M
     steps:
       - name: New version information
-        run: echo "${{ github.event.client_payload.version }}"
+        run: echo "Starting release for ref ${{ github.event.client_payload.ref }}"
       - name: Checkout sbt/sbt
         uses: actions/checkout@v3
         with:
-          repository: sbt/sbt
-          ref: 1.9.x
+          repository: rochala/sbt
+          ref: ${{ github.event.client_payload.ref }}
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
@@ -52,31 +57,38 @@ jobs:
         run: |
           echo $(pwd)
           sbt clean nativeImage
+      - name: Set REF value
+        run: |
+          if [ ${{ github.event.action }} == "AutomaticRelese" ]; then
+              echo "REF=${{ github.event.client_payload.ref }}" >> $GITHUB_ENV
+          else
+              echo "REF=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
+          fi
+
+          echo ${REF##*/} >> $GITHUB_ENV
       - name: Build Linux packages
         if: ${{ matrix.uploaded_filename == 'sbtn-x86_64-pc-linux' }}
         shell: bash
         run: |
           echo $(pwd)
           cd launcher-package
-
-          LATEST_TAG=$(git tag --sort=taggerdate | tail -1 | sed 's/^v//')
           LINUX_BINARIES_FOLDER=target/linux-packages
 
           ## Create binaries
-          sbt -Dsbt.build.version=$LATEST_TAG -Dsbt.build.offline=false -Dsbt.build.includesbtn=false -Dsbt.build.includesbtlaunch=false rpm:packageBin debian:packageBin
+          sbt -Dsbt.build.version=$TAG-Dsbt.build.offline=false -Dsbt.build.includesbtn=false -Dsbt.build.includesbtlaunch=false rpm:packageBin debian:packageBin
 
           ## Move binaries to linux-packages folder
           mkdir -p $LINUX_BINARIES_FOLDER
           rm -rf "$LINUX_BINARIES_FOLDER/*"
 
           RPM_ARTIFACT_PARENT=target/rpm/RPMS/noarch
-          RPM_ARTIFACT_NAME="sbt-$LATEST_TAG-0.noarch.rpm"
+          RPM_ARTIFACT_NAME="sbt-$TAG-0.noarch.rpm"
           RPM_ARTIFACT="$RPM_ARTIFACT_PARENT/$RPM_ARTIFACT_NAME"
 
-          mv "$RPM_ARTIFACT" "$LINUX_BINARIES_FOLDER/sbt-$LATEST_TAG.rpm"
+          mv "$RPM_ARTIFACT" "$LINUX_BINARIES_FOLDER/sbt-$TAG.rpm"
 
           DEBIAN_ARTIFACT_PARENT=target/
-          DEBIAN_ARTIFACT_NAME="sbt_${LATEST_TAG}_all.deb"
+          DEBIAN_ARTIFACT_NAME="sbt_${TAG}_all.deb"
           DEBIAN_ARTIFACT="$DEBIAN_ARTIFACT_PARENT/$DEBIAN_ARTIFACT_NAME"
 
           mv "$DEBIAN_ARTIFACT" "$LINUX_BINARIES_FOLDER"
@@ -123,13 +135,19 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
+      - name: Create release
+        id: create-release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ env.TAG }}
+          tag_name: ${{ env.REF }}
       - name: Upload release
         if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ${{ matrix.local_path }}
           asset_name: ${{ matrix.uploaded_filename }}
           asset_content_type: application/zip
