@@ -1,7 +1,7 @@
 name: Verify Repositories
 on:
   workflow_run:
-    workflows: [pages build and deployment]
+    workflows: [pages-build-deployment]
     types: [completed]
     branch: [develop]
 jobs:
