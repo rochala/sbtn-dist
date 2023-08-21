@@ -1,11 +1,13 @@
 name: Verify Repositories
 on:
-  push:
-    branches:
-      - develop
+  workflow_run:
+    workflows: [pages build and deployment]
+    types: [completed]
+    branch: [develop]
 jobs:
   verify-repositories:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: Checkout rochala/sbtn-dist
       uses: actions/checkout@v3
