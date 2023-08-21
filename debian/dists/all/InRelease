@@ -5,52 +5,52 @@ Acquire-By-Hash: yes
 Architectures: all
 Codename: all
 Components: main
-Date: Thu, 17 Aug 2023 14:42:10 +0000
+Date: Mon, 21 Aug 2023 07:13:12 +0000
 Description: native script to run sbt, a build tool for Scala and more
 Label: Scala-sbt
 Origin: Scala-sbt
 Suite: all
 MD5Sum:
- 62cb3fddcc6969d99f0fc2bcd3828d04              226 Release
+ bf6012422ee6c713e2b25d9a19483049              226 Release
  50f07592c9ca56065fbe200198d3e65e              399 main/Contents-all
  813b669676f83f8ea82a006d80802f12              164 main/Contents-all.gz
- 2db391c63232499228243aa366f3383a              685 main/binary-all/Packages
- 98089889030e78ea99ab9c929dc7ccbe              548 main/binary-all/Packages.bz2
- 5f106e3362c2fae154ff2bad94e16f91              520 main/binary-all/Packages.gz
+ d912761bbf21e3e6d2ff340b7aee8d52              685 main/binary-all/Packages
+ 2527299d44e6e4dfabb33d5c053f8821              547 main/binary-all/Packages.bz2
+ b7d09bd65298d4aee847353fa7e7aecf              518 main/binary-all/Packages.gz
 SHA1:
- a5817c56ba6c040f2f813c0a45cd1ed328b02c47              226 Release
+ 2fe9d5e34b25479fcf9b3c3c209aafcb3b976a03              226 Release
  26ccad4d4370b4b2d22db69424bfcf5f6db734cc              399 main/Contents-all
  d353d011f853a5a2e679e980047f0f9bb4910dd3              164 main/Contents-all.gz
- 0810379a2240bdd78a959cea4ee030ec0e87c516              685 main/binary-all/Packages
- 0f8ef45731d8e6dc8436c4e08996ca4e8d1e8e1b              548 main/binary-all/Packages.bz2
- a103bf22bc8bc42435a616ee68f3337f5d452591              520 main/binary-all/Packages.gz
+ f388f6d94d663c4c26f17c13abecff909d7077f0              685 main/binary-all/Packages
+ 40aa5804a6f5a9ff951403abe4d093aeeccde212              547 main/binary-all/Packages.bz2
+ 8888e7e805d1eee8deae009f99804e11a0412dc0              518 main/binary-all/Packages.gz
 SHA256:
- 70ad25bcdf0c70c33a0b8a7a33c1da7ac230a65ed0612ce0a36621166bde6fec              226 Release
+ 08379cf371f9892173078689a2aceb30fe4b12d4c148c864c0ea85d31be8c18f              226 Release
  517b4d01dc83d2779cb20885bf407f6fc3743f274f0ae1465398741841ac5c8e              399 main/Contents-all
  93f908fd3201ff172cafbe355a1436a77f7b43c123786264811121f53e9b3762              164 main/Contents-all.gz
- 134b1d77ce655984fb35ada74eb557279177a6e51275647c6399287c5c19eb84              685 main/binary-all/Packages
- df735d010de7123ee06ca9453c89d1900df754b691f1023c034aabb02b0c75e1              548 main/binary-all/Packages.bz2
- a763f066b0e63e19899ed4cf5e07ab622be139c76239eb3e24d47fa943e0daea              520 main/binary-all/Packages.gz
+ 331f69909956e5bad60005c689208e6157ae8148a3fa1bf9bbc1c0a473c2fb70              685 main/binary-all/Packages
+ d5cd9700b36a28ff5e694e23116aaaab720a7446f7d771d359ff55854cd38282              547 main/binary-all/Packages.bz2
+ eed29ae32b659bed52613c1feeb219208eb15ae6b394665c41588df99898034d              518 main/binary-all/Packages.gz
 SHA512:
- 0751b21d2d4c57d56c5c2b621d1f63434c757cdcb540cb08262efed1b00231a7bab6df31e56ea1881e5a1cd3734e89b1f286a1d9a751ba256804bccd340c34d0              226 Release
+ 742e6cd7b95990feb112949e07022946b79575e69106ddb4fb901e788265d841bf8cc59143e071036b59c13e740715d6678d22e9fc37ce675c5f513be8d3de6b              226 Release
  87996d8b3c0c5890907b250340a299533fdeb6e6a2b16d4f735641bffb84d2b4b8ae29fb10583eda77db99cef6b2ef7f5c8ec113d8350762ddc3026e730f7732              399 main/Contents-all
  430599f576f76817b38d71a385208516c9b14a93b71ba647e632d394757a8beaac72dd51e2fe517aa410692f7f9e5a8eed074d82f7dc5fb9f697ef34be8381d8              164 main/Contents-all.gz
- baf0f7f032d1bfe0be1b6ea2d63a6ea88ee9d36af5939a262b8f505e2ca19e875b3f9c1434d82a03b556648c085c27ab5ee7049c77600364b20d2603fdba3bb6              685 main/binary-all/Packages
- a1a4c5b385b6ffd0a6e65bb2d3d07a1088110e9381de167451bb546e3b6e5de144d096eaf4cbc241a4bccabf2b5813b5bc84d488ac0d92fb07120e26ec48de50              548 main/binary-all/Packages.bz2
- 4624fe2e1669877afef81926a6fc0b56f6a3e723554fd295291a1b60c6f6804c685bac5ccd5cf4c7ff99dbb3a67bbd6102a7658b43263d05188f21997c028b3d              520 main/binary-all/Packages.gz
+ b55cd52fee16b8838a48504b09d54da4cb49d7d7ef3b573c2c473f47a8f3efdb48e2f03428f5aaa01150e13530c53b1d674377019ccb9da728b31aec9f4cfe9f              685 main/binary-all/Packages
+ 8e2b15f54d0aeb14505b4f32240e522c4d364f385c1e8e3ea68557b9a3373885598899e843e83f688da233d4357823cce81b0b28bdcc73a319b0fba7260e02b9              547 main/binary-all/Packages.bz2
+ b21dfc1fee91d3b519044e5db018fa08e9b5c3b1a8fbbc8817b3fd240895e7221c363fa972f11daa3a0301140e9bd49d07421b4f318352c645fe502a437a1dd3              518 main/binary-all/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEDhwktsd8yI9wMD1U7DtwIgrtAGwFAmTeMcQACgkQ7DtwIgrt
-AGwGAA/+JIJyvXPyEtSDFW7PX/F4sDMNToG7bPLd8NRyoKIWxCyHo5+YmDBF9gCG
-I0z3bDGEb51r3rftpcQSb6sDbHJzFOoUPnlw4n0c3tvkEod4gWU0B51Z1qnkaqzV
-PAfkoRm1WKGoqXM+RzXSWRiTsbBlUgczFntUVMiKXPFE8nPsNzBOIXHbGJQa1wD0
-yP3Vk+M2k1x9wQnnT4LyG68HhoX7TecezVq/HQPB1IpdDCdr7YYSzcoYMKSO3gdA
-UDMLwz0NCwtDueN4QhAJe64jMyxZs+MbCVMeiXUGraiQ5a9Fy6UF5KmFCY0TYmho
-+AvfC40eq2AP3uHCGukTG400Zu3CNTyQyiRFeTfiOFz14gDy+eLP7SZq0UDvFeat
-YwlwE3bwsH7s1EDKjeg9VoMuRlZpd5vCTQi5POy9Wk9fI8pSLYds5KK92TVhRXwL
-EubjCxMVXJzBDm+J4mQa7xQTFJJER4Whdh5reV7kDEN694t8WDaOqh2wPitTPRtK
-QJ12IQsrxgL+SF9gUzzQ0N8EgM7HHpqHVlb5HVMdEGykdq5lh8KTTRn6wWroKKdO
-NIZovWBqHT2LAarZiVBlGRpuQfLQ9nKPoe83pQywrgnyigQMKVZBFc36TfI1jGD/
-XnbF7lcmFif0F00zhQqZDlUlkN4hWmh/AJmhe4b2Xxd9m9PLA9A=
-=sQaP
+iQIzBAEBCgAdFiEEDhwktsd8yI9wMD1U7DtwIgrtAGwFAmTjDooACgkQ7DtwIgrt
+AGymmQ//bfyLNHyoDFx3F98Y0ITYCYY+RZBaRB8pheIgwwPXXZu4/26k+LfkS/f+
+Pcdz+3aujOwLVoF0v07oU4za18lkcSi9Dy8IenGNIqoPaYiRW/3dZM/+Yr4GNmJD
+iwwk7P0zl83VYjYMdgCCw2XYYKc9eXIHXAFfMWe/yM9BG913MzcpwTvHQeLxZIUY
+Jdt46u8qcheXEA2BoGzqKaKEQI1pF3ayr5Km9OfqCiyEev8N0RJydpHwPnoolw0p
+wNYjTuXjJFOvCDW38PkmgLzCtWR08u3y6sWUo6vVLV7ioStb7itg4FBINfsLyRMY
+fSjJ7da57e1M9tH4381eAid5qta02L20OGYBRHj8GNU6Gh56gbRXCbJfSjWJPcge
+/CtGtY6rT9SF40VTNDqMC/8xYz/jmk5Lyv3P4PONJw6XAjDFGBh2fK2MR6i7ueF2
+BfB9Uac5K6HiXBaBvopNiaYpfjqdezjpTlmdev6Fiv2bLjRbYH+7ehb1V0wDXrxS
+0fo1qWsNUWAFvvHXyxvji4RiFyp3n0aRxiWkL770rHj2XYvoOQWxad71lGNSFHjD
+IKEGDj0cf4apjid9LEQ3cO9hpWmKPeICcMnKd+c41Ja7zlPsE+MliNaXxh1d+4sR
+lvlxoomqWFQ1QN5q1DW18Z3KOhDAYnYIxy6qkT+DrXnXzMn5HHE=
+=Iney
 -----END PGP SIGNATURE-----
